@@ -7,6 +7,8 @@
 #include <unordered_set>
 
 #include "BinaryTree.h"
+#include "Impl.h"
+#include "SpecialBT.h"
 
 
 /* Usings */
@@ -29,10 +31,18 @@ public:
 };
 
 int main() {
-    vector<int> nums = {5,2 ,6, 1};
-    auto res = countLess(nums);
-    for (auto it : res) 
-        cout << it << ",";
-    cout << endl;
+    vector<int> nums = {0,1,2,3,4,5,6,7,8,9};
+    NumArray na(nums);
+    while (1) {
+        int l = 0, r = 0;
+        l = 5, r = 7;
+    //    cin >> l >> r; cout << endl;
+        cout << "---------: " << na.sumRange(l,r) << ", " << na.sumArray << endl;
+        int c = 0;
+        for (int i = l; i <= r; i++) c += nums[i];
+        cout << "final " << c << endl;
+        break;
+    }
+    
     return 0;
 }

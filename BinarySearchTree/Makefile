@@ -5,3 +5,5 @@ SRC=$(wildcard *.cpp)
 
 leetcode : $(SRC)
 	$(CC) $(FLAGS) -o $@ $^
+clean:
+	rm -rf leetcode

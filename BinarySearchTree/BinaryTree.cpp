@@ -59,6 +59,114 @@ int btree::insert(int key, node *leaf, int preNumLeft)
     return preNumLeft;
 }
 
+node* btree::insert_return_node(int key, int data) {
+    if(root != nullptr)
+        return insert_return_node(key, data, root);
+    else
+    {
+        root = new node(key, 0, 0, 0);
+        root->sate.data = data;
+        return root;
+    }
+}
+
+node* btree::insert_return_node(int key, int data, node* leaf) {
+    if(key < leaf->key_value)
+    {
+        leaf->sate.numOfLC += 1;
+        leaf->sate.sumOfLeftSubtree += data;
+        if(leaf->left != nullptr)
+            return insert_return_node(key, data, leaf->left);
+        else
+        {
+            leaf->left = new node(key, 0, 0, 0);
+            leaf->left->sate.data = data;
+            leaf->left->parent = leaf;
+            return leaf->left;
+        }  
+    }
+    else 
+    {
+        leaf->sate.sumOfRightSubtree += data;
+
+        if (leaf->right != nullptr) {
+            if (leaf->key_value != key)
+                leaf->sate.numOfRC += 1;
+            return insert_return_node(key, data, leaf->right);
+        }
+        else {
+            leaf->right = new node(key, 0, 0, 0);
+            leaf->right->sate.data = data;
+            leaf->right->parent = leaf;
+            return leaf->right;
+        }
+    }
+}
+
+
+node *btree::GetLastUpLeftAncestor(node *leaf) {
+    node* n = leaf;
+    while (n != nullptr) {
+        if (n->parent == nullptr || n->parent->left == n)
+            break;
+        n = n->parent;
+    }
+    return n;
+}
+
+node *btree::GetLastUpRightAncestor(node *leaf) {
+    node* n = leaf;
+    while (n != nullptr) {
+        if (n->parent == nullptr || n->parent->right == n)
+            break;
+        n = n->parent;
+    }
+    return n;
+}
+int btree::GetSumOfLessThan(node* leaf) {
+    if (leaf == nullptr) return 0;
+    node *lastUpLeftAncestor = GetLastUpLeftAncestor(leaf);
+    return lastUpLeftAncestor->sate.GetSumOfSubtree()
+        + lastUpLeftAncestor->sate.data
+        - leaf->sate.data
+        - leaf->sate.sumOfRightSubtree;
+}
+int btree::GetSumOfMoreThan(node* leaf) {
+    if (leaf == nullptr) return 0;
+    node *lastUpRightAncestor = GetLastUpRightAncestor(leaf);
+    return
+          lastUpRightAncestor->sate.GetSumOfSubtree()
+        + lastUpRightAncestor->sate.data
+        - leaf->sate.data
+        - leaf->sate.sumOfLeftSubtree;
+}
+void btree::updateSateData(node* leaf, int val) {
+    if (leaf == nullptr) return;
+    bool isLeftChild = true;
+    int update = val - leaf->sate.data;
+    leaf->sate.data = val;
+    if (leaf->parent != nullptr) {
+        if (leaf != leaf->parent->left) {
+            isLeftChild = false;
+        }
+        updateSateData(leaf->parent, update, isLeftChild);
+    }
+    return;
+}
+void btree::updateSateData(node* leaf, int update, bool isLeftChild) {
+    node* n = leaf;
+    while (n != nullptr) {
+        if (isLeftChild) {
+            n->sate.sumOfLeftSubtree += update;
+        }
+        else {
+            n->sate.sumOfRightSubtree += update;
+        }
+        n = n->parent;
+    }
+    return;
+}
+
 node *btree::search(int key, node *leaf)
 {
   if(leaf!=nullptr)
@@ -104,7 +212,15 @@ void btree::destroy_tree()
   destroy_tree(root);
 }
 
-Satellite::Satellite(int nl, int nr, int p) : numOfLC(nl), numOfRC(nr), pos(p) {} 
+/* ====================================================================== */
+
+Satellite::Satellite(int nl, int nr, int p) : numOfLC(nl), numOfRC(nr), pos(p) {
+    sumOfLeftSubtree 
+        = sumOfRightSubtree
+        = sumOfSubtree 
+        = data 
+        = 0;
+} 
 
 node::node(int k, int nl, int nr, int p):key_value(k), sate(nl,nr,p) {
     left = right = parent = nullptr;
