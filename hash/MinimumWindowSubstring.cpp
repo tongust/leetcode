@@ -1,0 +1,190 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <random>
+#include <algorithm>
+#include <iterator>
+#include <unordered_map>
+#include <unordered_set>
+#include <math.h>       /* log2 */
+
+#ifndef MMIN
+#define MMIN(x,y) ((x) > (y) ? (y) : (x))
+#endif
+#ifndef MMAX
+#define MMAX(x,y) ((x) < (y) ? (y) : (x))
+#endif
+
+#ifndef PRINT1D
+#define PRINT1D(v,d) do {for (auto it_print : v) cout << it_print << d; cout << endl;}while(0)
+#endif
+
+#ifdef PRINT1D
+#ifndef PRINT2D
+#define PRINT2D(v,d)                          \
+do {                                          \
+    cout << endl;                             \
+    for (auto &it_print2d : v) {              \
+        for (auto &it_print1d : it_print2d) { \
+            cout << it_print1d << d;          \
+            } cout << endl;                   \
+    }                                         \
+} while(0)
+#endif
+#endif
+
+#ifndef MDebugLog
+#define MDebugLog(msg)  std::cout << __FILE__ << ":" << __LINE__ << ": " << msg
+#endif
+
+/* Usings */
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+using std::unordered_map;
+using std::unordered_set;
+using std::string;
+using std::vector;
+using std::pair;
+
+/* Typedef */
+
+typedef vector<int> vint;
+typedef vector<vector<int>> vvint;
+
+class Solution {
+public:
+int count_helper(unordered_map<char, int> &mmp, char c) {
+    auto res_find = mmp.find(c);
+    if (res_find == mmp.end()) {
+        return 0;
+    } else {
+        return mmp[c];
+    }
+}
+void insert_helper(unordered_map<char, int> &mmp, char c) { 
+    auto res_find = mmp.find(c);
+    if (res_find == mmp.end()) {
+        mmp.insert({c, 1});
+    } else {
+        mmp[c]++;
+    }
+    return;
+}
+void decre_helper(unordered_map<char, int> &mmp, char c, unordered_map<char, int> &leftset) {
+    auto resf = mmp.find(c);
+    if (resf == mmp.end()) {
+        insert_helper(leftset, c);
+    } else {
+        if (mmp[c] == 1) {
+            mmp.erase(c);
+        } else {
+            mmp[c]--;
+        }
+    }
+    
+}
+void decre_helper(unordered_map<char, int> &mmp, char c) {
+    auto resf = mmp.find(c);
+    if (resf == mmp.end()) {
+        return;
+    } else {
+        mmp[c]--;
+    }
+}
+void erase_helper(unordered_map<char, int> &mmp, char c) {
+    mmp.erase(c);
+    return;
+}
+string minWindow(string s, string t) {
+    if (s.empty())return string("");
+    unordered_map<char, int> stdset, itrset, lefset;
+    bool tset[256];
+    for (int i = 0; i < 256; i++) {
+        tset[i] = false;
+    }
+    for (auto ct : t) {
+        tset[ct] = true;
+        insert_helper(stdset, ct);
+    }
+
+    int num_t = 0;
+    for (int i = 0; i < 256; i++) {
+        if (tset[i]) 
+            num_t++;
+    }
+    // test if existing
+    itrset = stdset;
+    bool isExist = false;
+    for (int i = 0; i < s.size(); ++i) {
+        char cs = s[i];
+        if (tset[cs]) {
+            decre_helper(itrset, cs, lefset);
+            if (itrset.empty()) {
+                isExist = true;
+                break;
+            }
+        }
+    }
+    if (!isExist) {
+        return string("");
+    }
+    itrset = stdset;
+    lefset.clear();
+    vector<pair<int,int>> res;
+    int begin0 = 0, end0 = 0;
+    for (int i = 0; i < s.size(); ++i) {
+        char tc = s[i];
+        if (tset[tc]) {
+            decre_helper(itrset, tc, lefset);
+            if (itrset.empty()) {
+                // start to minus
+                int tmp0 = begin0;
+                int end0 = i;
+                for (int j = begin0; j <= end0; ++j) {
+                    char tc1 = s[j];
+                    if (tset[tc1]) {
+                        if (count_helper(lefset, tc1) == 0) {
+                            tmp0 = j;
+                            begin0 = j + 1;
+                            insert_helper(itrset, tc1); // add 
+                            break;
+                        } else { 
+                            decre_helper(lefset, tc1);
+                        }
+                    }
+                }
+                res.push_back({tmp0, end0});
+            }
+        }
+        
+    } // i
+    int minimum_size = s.size();
+    pair<int, int> res_point = {0, minimum_size - 1};
+    for (auto &it_res : res) {
+        cout << it_res.first << " " << it_res.second << endl;
+        int tmp2 = it_res.second - it_res.first;
+        if (tmp2 < minimum_size) {
+            minimum_size = tmp2;
+            res_point = it_res;
+        }
+    }
+    string res_str(s.begin()+res_point.first, s.begin()+1+res_point.second);
+    return res_str;
+    }
+};
+
+
+int main() {
+   string S = "ab",
+          T = "b";
+    Solution sol;
+    cout << "S\t" << S << endl;
+    cout << "T\t" << T << endl;
+
+    cout <<  sol.minWindow(S, T) << endl;
+
+    return 0;
+}
