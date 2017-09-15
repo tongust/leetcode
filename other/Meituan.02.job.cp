@@ -40,7 +40,7 @@ do {                                          \
 #define MDebugLog(msg)  std::cout << __FILE__ << ":" << __LINE__ << ": " << msg
 #endif
 
-/* Usings */
+/* using */
 
 using std::cin;
 using std::cout;
@@ -55,20 +55,31 @@ using std::unordered_map;
 using std::unordered_set;
 using std::vector;
 
-/* Typedef */
+/* typedef */
 
 typedef vector<int> vint;
 typedef vector<vector<int>> vvint;
 typedef vector<vvint> vvvint;
 typedef vector<vvvint> vvvvint;
 
+/* example */
+/*
+ * vector<int> mvec;
+ * mvec.begin(); mvec.end(); pair<int, int>; first; second;
+ * iterator
+ */
 
 int main() {
-        set<int> ms = {1,2,4,4,6,9};
-        for (auto i : ms)
-                cout << i << endl;
-        auto low = std::lower_bound(ms.begin(), ms.end(),3);
-        auto uper = std::upper_bound(ms.begin(), ms.end(),7);
-        cout << std::distance(low,uper) << endl;
+        int n = 0;
+        cin >> n;
+        vector<int> bobs(n,0);
+        for (auto &b : bobs) {
+                cin >> b;
+        }
+        if (bobs.back() == 1) {
+                cout << "Alice" << endl;
+        }
+        else 
+                cout << "Bob" << endl;
         return 0;
 }
