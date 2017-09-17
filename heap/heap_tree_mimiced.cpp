@@ -341,6 +341,22 @@ public:
         }
         return;
     }
+    void del(string key)
+    {
+        auto resf = mapele.find(key);
+        auto resf_max = mapele_max.find(key);
+        int resi = 0;
+        int resi_max = 0;
+        if (resf != mapele.end())// exist!
+        {
+                min_heap_delete(coll, resf->second->index);
+                max_heap_delete(coll_max, resf_max->second->index);
+                resf = mapele.erase(resf);
+                resf_max = mapele_max.erase(resf_max);
+        }
+        return;
+
+    }
     /** Returns one of the keys with maximal value. */
     string getMaxKey()
     {
