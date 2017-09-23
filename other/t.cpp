@@ -1,15 +1,25 @@
-
 #include <algorithm>
+#include <cmath>
+#include <deque>
 #include <iostream>
 #include <iterator>
 #include <list>
 #include <math.h>       /* log2 */
 #include <random>
 #include <set>
+#include <sstream>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#define SKELETON
+
+#ifdef SKELETON 
+#define _MIN_S_32 0x8fffffff
+#define _MIN_U_32 0x80000000
+#endif
+
 
 #ifndef MMIN
 #define MMIN(x,y) ((x) > (y) ? (y) : (x))
@@ -40,54 +50,44 @@ do {                                          \
 #define MDebugLog(msg)  std::cout << __FILE__ << ":" << __LINE__ << ": " << msg
 #endif
 
-/* Usings */
+/* using */
 
-using std::cout;
 using std::cin;
+using std::cout;
+using std::deque;
 using std::endl;
-
-using std::unordered_map;
-using std::unordered_set;
-using std::string;
-using std::vector;
-using std::pair;
+using std::getline;
 using std::list;
 using std::multiset;
+using std::pair;
 using std::set;
+using std::sqrt;
+using std::string;
+using std::stringstream;
+using std::unordered_map;
+using std::unordered_set;
+using std::vector;
 
-/* Typedef */
+/* typedef */
 
 typedef vector<int> vint;
 typedef vector<vector<int>> vvint;
 typedef vector<vvint> vvvint;
 typedef vector<vvvint> vvvvint;
-typedef long long ll64;
 
-class Solution {
-public:
-    vint _nums;
-    int low, up;
-    int countRangeSum(vint &nums, int lower, int upper) {
-        if (nums.empty()) return 0;
-        low = lower;
-        up = upper; 
-        _nums = nums;
-        multiset<ll64> sum_set;
-        ll64 sum = 0;
-        int res = 0;
-        for (int i = 0; i < nums.size(); ++i) {
-            sum += nums[i];
-            if (isIn(sum)) res++;
-            ll64 l = sum - upper, r = sum - lower;
-            auto itl = sum_set.lower_bound(l),
-                 itr = sum_set.upper_bound(r);
-            res += std::distance(itl, itr);
-            sum_set.insert(sum);
-        }
-        return res;
-    }
-    bool isIn(ll64 n) {
-        return n >= low && n <= up; 
-    }
-};
+/* example */
+/*
+ * vector<int> mvec;
+ * mvec.begin(); mvec.end(); pair<int, int>; first; second;
+ * iterator
+ * while(getline(stringstream, string, char))
+ */
+
+int main()
+{
+        const int *p = new int;
+        int *a = const_cast<int *>(p);
+        
+        return 0;
+}
 
