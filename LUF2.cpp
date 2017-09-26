@@ -73,11 +73,11 @@ public:
 
 public:
 	int cap;
-	unordered_map<int, list<pair<int/*value*/, int/*key*/> >::iterator> map_int_pair;
+	unordered_map<int, list<<int/*value*/, int/*key*/> >::iterator> map_int_pair;
 	list<pair<int, int>> ls;
 };
 
-int main1()
+int main()
 {
 	LRUCache lru(2);
 	lru.put(1,1);
@@ -89,8 +89,9 @@ int main1()
 	cout << lru.get(2) << endl;
 	cout << lru.get(3) << endl;
 	lru.put(3,4);
-	lru.put(1,1);
+	lru.put(1,3);
 	cout << lru.get(3) << endl;
+	cout << lru.get(1) << endl;
 	return 0;
 }
 
