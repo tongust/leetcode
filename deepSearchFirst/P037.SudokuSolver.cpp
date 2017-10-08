@@ -1,0 +1,254 @@
+#include <algorithm>
+#include <cmath>
+#include <deque>
+#include <iostream>
+#include <iterator>
+#include <list>
+#include <math.h>       /* log2 */
+#include <random>
+#include <set>
+#include <sstream>
+#include <string>
+#include <unordered_map>
+#include <tuple>
+#include <unordered_set>
+#include <vector>
+
+#define SKELETON
+
+#ifdef SKELETON 
+#define _MIN_S_32 0x80000001
+#define _MIN_U_32 0x00000000
+#define _MAX_S_32 0x7fffffff
+#define _MAX_U_32 0xffffffff
+#endif
+
+#ifndef MMIN
+#define MMIN(x,y) ((x) > (y) ? (y) : (x))
+#endif
+#ifndef MMAX
+#define MMAX(x,y) ((x) < (y) ? (y) : (x))
+#endif
+
+#ifndef PRINT1D
+#define PRINT1D(v,d) do {for (auto it_print : v) cout << it_print << d; cout << endl;}while(0)
+#endif
+
+#ifdef PRINT1D
+#ifndef PRINT2D
+#define PRINT2D(v,d)                          \
+do {                                          \
+    cout << endl;                             \
+    for (auto &it_print2d : v) {              \
+        for (auto &it_print1d : it_print2d) { \
+            cout << it_print1d << d;          \
+            } cout << endl;                   \
+    }                                         \
+} while(0)
+#endif
+#endif
+
+#ifndef MDebugLog
+#define MDebugLog(msg)  std::cout << __FILE__ << ":" << __LINE__ << ": " << msg
+#endif
+
+/* using */
+using namespace std;
+
+typedef vector<int> vint;
+typedef vector<vector<int>> vvint;
+typedef vector<vvint> vvvint;
+typedef vector<vvvint> vvvvint;
+
+typedef vector<unordered_set<char>> vset;
+typedef vector<char> vchar;
+typedef vector<vchar> vvchar;
+typedef vector<vset> vvset;
+const int N = 9;
+const char base[N] = {'1','2','3','4','5','6','7','8','9'};
+class Solution {
+public:
+        bool isNumber(char c) {
+                return c != '.';
+        }
+        bool find(unordered_set<char> &s, char c)
+        {
+                return s.find(c) != s.end();
+        }
+        tuple<int, int> calNum(int i, int j)
+        {
+                i = i / 3;
+                j = j / 3;
+                return tuple<int, int> (3*i, 3*j);
+        }
+        bool recur(vvset &mset, vvchar &board, int i0, int j0) {
+
+                if (i0 == N) return true;
+
+                bool res_bool = false;
+                char c = board[i0][j0];
+
+                int i1 = j0 == N-1 ? i0 + 1 : i0;
+                int j1 = j0 == N-1 ? 0 : j0 + 1;
+                if (isNumber(c)) return recur(mset, board, i1, j1);
+                if (mset[i0][j0].empty())
+                        return false;
+                for (auto cand : mset[i0][j0])
+                {
+                        board[i0][j0] = cand;
+                        vint ridx,didx;
+                        /* right */
+                        for (int j = j0+1; j < N; ++j)
+                                if (!isNumber(board[i0][j])) {
+                                        if (find(mset[i0][j], cand))
+                                        {
+                                                ridx.push_back(j);
+                                                mset[i0][j].erase(cand);
+                                        }
+                                }
+                        /* down */
+                        for (int i = i0+1; i < N; ++i)
+                                if (!isNumber(board[i][j0]))
+                                {
+                                        if (find(mset[i][j0], cand))
+                                        {
+                                                didx.push_back(i);
+                                                mset[i][j0].erase(cand);
+                                        }
+                                }
+                        /*neighbor*/
+                        int t0, t1;
+                        vvint del_neg;
+                        std::tie(t0, t1) = calNum(i0, j0);
+                        for (int m = t0; m < t0+3; ++m)
+                        {
+                                for (int n = t1; n < t1+3; ++n) {
+                                        if (!isNumber(board[m][n])) {
+                                                if (find(mset[m][n], cand)) {
+                                                        mset[m][n].erase(cand);
+                                                        del_neg.push_back({m, n});
+                                                }
+                                        }
+                                }
+                        }
+                        res_bool = recur(mset, board, i1, j1); 
+                        /* roll back */
+                        for (auto j : ridx)
+                                mset[i0][j].insert(cand);
+                        for (auto i : didx)
+                                mset[i][j0].insert(cand);
+                        for (auto &it : del_neg) {
+                                mset[it[0]][it[1]].insert(cand);
+                        }
+                        if (!res_bool)board[i0][j0] = c;
+                        else break;
+
+                }
+                if (!res_bool) board[i0][j0] = c;
+                return res_bool;
+        }
+        void print_mset(vvset &mset)
+        {
+                for (auto i : mset)
+                {
+                        for (auto j : i)
+                        {
+                                for (auto k : j) cout << k;
+                                cout << "\t";
+                        }
+                        cout << endl;
+                }
+        }
+        void solveSudoku(vector<vector<char>>& board) {
+                auto mset = init_set(board);
+                //print_mset(mset);
+                recur(mset, board, 0,0);
+        }
+
+        vvset init_set(vvchar &board)
+        {
+                vvset mset(N, vset(N));
+                for (int i = 0; i < N; ++i)
+                        for (int j = 0; j < N; ++j)
+                                for (int k = 0; k < N; k++)
+                                        mset[i][j].insert(base[k]);
+                for (int i = 0; i < N; ++i)
+                        for (int j = 0; j < N; ++j)
+                        {
+                                char c = board[i][j];
+                                if (isNumber(c)) {
+                                        mset[i][j].clear();
+                                }
+                                else {
+                                        for (int k = 0; k < N; ++k)
+                                                mset[i][j].erase(board[i][k]);
+                                        for (int k = 0; k < N; ++k)
+                                                mset[i][j].erase(board[k][j]);
+                                        int t0, t1;
+                                        std::tie(t0, t1) = calNum(i, j);
+                                        for (int m = t0; m < t0+3; ++m){
+                                                for (int n = t1; n < t1+3; ++n)
+                                                        mset[i][j].erase(board[m][n]);
+                                        }
+                                }
+                        }
+                return mset;
+        }
+};
+
+void check(vvchar &board)
+{
+        unordered_set<char> mset, mset0;
+        for (auto i : base)
+                mset.insert(i);
+        for (int i = 0; i < N; ++i) {
+                mset0 = mset;
+                for (int j = 0; j < N; ++j)
+                {
+                        char c = board[i][j];
+                        mset0.erase(c);
+                }
+                if (!mset0.empty()){
+                        cout << "W: " << endl;
+                PRINT1D(board[i] , "");
+                }
+        }
+        for (int i = 0; i < N; ++i) {
+                mset0 = mset;
+                for (int j = 0; j < N; ++j)
+                {
+                        char c = board[j][i];
+                        mset0.erase(c);
+                }
+                if (!mset0.empty()) 
+                {cout << "W: " << endl;
+                for (int j = 0; j < N; ++j) {
+                        cout << board[j][i];
+                } cout << endl;
+                }
+        }
+                
+}
+
+int main()
+{
+        vector<string> vs = {"..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."};
+        //vector<string> vs = {"53..7....", "6..195...", ".98....6.", "8...6...3", "4..8.3..1", "7...2...6", ".6....28.", "...419..5", "....8..79"};
+        vvchar board(N, vchar(N));
+        int i = -1;
+        for (auto it : vs)
+        {
+                int j = -1;
+                i++;
+                for (auto it0 : it) {
+                        board[i][++j] = it0;
+                }
+        }
+        PRINT2D(board,  " ");
+        Solution so;
+        so.solveSudoku(board);
+        PRINT2D(board,  " ");
+        check(board);
+        return 0;
+}
+
