@@ -1,0 +1,19 @@
+# elf
+main
+*.o
+*.a
+*.so
+*.pyc
+
+# ide
+CMakeCache.txt
+**/CMakeFiles
+**/cmake-build-debug
+**/.idea
+*.cbp
+**/venv
+
+*~
+
+# submit
+**/submit
