@@ -1,4 +1,8 @@
 # **LEETCODE JUST FOR FUN**
+## Data structure in Python
+- [Binary Search Tree](./py/BST/note.md)
+
+## Problems
 |#| Title| Type | Complexity| Difficulty |Time Cost|  Performence  |
 |---|------|------|-----------|------------|---------|----------------|
 |[0001](https://leetcode.com/problems/two-sum/) |[Two sum](./py/P0001.py) | Sort and scan. No hashing is used here.| O(nlogn) time and O(n) space | Easy| 1h |  Runtime: faster than 32.26%. Usage:less than 66.05%.|
@@ -9,3 +13,5 @@
 |[0006](https://leetcode.com/problems/zigzag-conversion/)|[zigzag conversion](./py/P0006.py)|There exist the **pattern** in this problem|O(n) and O(n)|Medium|0.5h|faster than 20.56%; less than 100.00%|
 |[0007](https://leetcode.com/problems/reverse-integer/submissions/)|[reverse integer](./py/P0007.py)||O(1)|Easy|20m| faster than 51.04%;less than 100.00%|
 |[0133](./py/P0133.py)|[Clone graph](https://leetcode.com/problems/clone-graph/)| **Graph** | O(n), O(n)| Medium|40m|faster than 72.21%; less than 100.00%|
+|[0099](./py/P0099.py)|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|**BST**, **Stack**, **In Order Traversing** Firstly all the invalid nodes are collectd, whose relationship is inconsistent with the rule in BST (such the value of current node is smaller than the one of left child or the one of its predecessor). Secondly, all the invalid nodes are re-sequenced by in-order traversing. Thirdly, the first and last nodes from the sequences are the target nodes.|O(nlogn), O(n)| Hard | 3h | faster than 5.18%; less than 100.00%|
+|0???|
