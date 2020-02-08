@@ -14,6 +14,10 @@
 [0021](https://leetcode.com/problems/merge-two-sorted-lists/)
 [0023](https://leetcode.com/problems/merge-k-sorted-lists/)
 
+- DP - 2d
+
+[0010](https://leetcode.com/problems/regular-expression-matching/)
+
 ## Problems
 |#| Title| Type | Complexity| Difficulty |Time Cost|  Performence (runtime and memory beats) |
 |---|------|------|-----------|------------|---------|----------------|
@@ -28,5 +32,6 @@
 |[0099](./py/P0099.py)|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|**BST**, **Stack**, **In Order Traversing** Firstly all the invalid nodes are collectd, whose relationship is inconsistent with the rule in BST (such the value of current node is smaller than the one of left child or the one of its predecessor). Secondly, all the invalid nodes are re-sequenced by in-order traversing. Thirdly, the first and last nodes from the sequences are the target nodes.|O(nlogn), O(n)| Hard | 3h |5.18%;100.00%|
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
 |[0021](./py/P0021.py)|[Merge two sorted lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(logn), O(1)| Easy | 10m |96.01%;100.00%|
-|[0023](./py/P0021.py)|[Merge k Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(nlogn), O(1)| Easy | 10m | 36.57%;100.00%|
+|[0023](./py/P0021.py)|[Merge k Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(nlogn), O(1)|Easy | 10m| 36.57%;100.00%|
+|[0010]((./py/P0010.py))| [regular expression matching](https://leetcode.com/problems/regular-expression-matching/) | This is one of classic ***Dynamic Programming*** problems. The formula of is: $d[i][j]=argmax(cal(i-1,j),cal(i,j-1), cal(i-1,j-1))$. Here the *argmax* is not to optimization, if there exist one solution or path, the path will be added to d[i][j]. | O(n*n), O(n*n) | Hard | 3+h |30.40%;100.00%|
 ||
