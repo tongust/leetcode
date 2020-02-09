@@ -33,5 +33,6 @@
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
 |[0021](./py/P0021.py)|[Merge two sorted lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(logn), O(1)| Easy | 10m |96.01%;100.00%|
 |[0023](./py/P0021.py)|[Merge k Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(nlogn), O(1)|Easy | 10m| 36.57%;100.00%|
-|[0010]((./py/P0010.py))| [regular expression matching](https://leetcode.com/problems/regular-expression-matching/) | This is one of classic ***Dynamic Programming*** problems. The formula of is: $d[i][j]=argmax(cal(i-1,j),cal(i,j-1), cal(i-1,j-1))$. Here the *argmax* is not to optimization, if there exist one solution or path, the path will be added to d[i][j]. | O(n*n), O(n*n) | Hard | 3+h |30.40%;100.00%|
+|[0010](./py/P0010.py)| [regular expression matching](https://leetcode.com/problems/regular-expression-matching/) | This is one of classic ***Dynamic Programming*** problems. The formula of is: $d[i][j]=argmax(cal(i-1,j),cal(i,j-1), cal(i-1,j-1))$. Here the *argmax* is not to optimization, if there exist one solution or path, the path will be added to d[i][j]. | O(n\*n), O(n\*n) | Hard | 3+h |30.40%;100.00%|
+|[0025](./py/P0025.py)|[Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)|List|O(n\*n), O(1)| Hard| 3+h | 5.03%;100.00%|
 ||
