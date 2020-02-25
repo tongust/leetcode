@@ -4,6 +4,9 @@
 
 [0099](https://leetcode.com/problems/recover-binary-search-tree/), [0493](https://leetcode.com/problems/reverse-pairs/)
 
+- [Heap](./py/Heap/note.md)
+
+
 - List
 
 [0021](https://leetcode.com/problems/merge-two-sorted-lists/)
@@ -18,6 +21,12 @@
 
 [0010](https://leetcode.com/problems/regular-expression-matching/)
 
+
+- [Ordered Dict](./py/Others/OrderedDict.md)
+
+[0460](https://leetcode.com/problems/lfu-cache/)
+
+
 ## Problems
 |#| Title| Type | Complexity| Difficulty |Time Cost|  Performence (runtime and memory beats) |
 |---|------|------|-----------|------------|---------|----------------|
@@ -28,11 +37,12 @@
 |[0005](https://leetcode.com/problems/longest-palindromic-substring)|[Longest palindromic substring](./py/P0005.py)|This is one of classical computer algorithm problems. And the state of the art algorithm is called [Manacher's algorithm](https://en.wikipedia.org/wiki/Longest_palindromic_substring). There are several alternatives. For example, **dynamic programming**. We define P(i,j)as following:$$P(i,j) = \begin{cases} \text{true,} &\quad\text{if the substring } S_i \dots S_j \text{ is a palindrome}\\ \text{false,} &\quad\text{otherwise.} \end{cases} $$Therefore, $$P(i, j) = ( P(i+1, j-1) \text{ and } S_i == S_j )$$ [see more](https://leetcode.com/articles/longest-palindromic-substring/).| $$O(n^2) \text{ and } O(1)$$| Medium| 1.5h |50.13%;100.00%|
 |[0006](https://leetcode.com/problems/zigzag-conversion/)|[zigzag conversion](./py/P0006.py)|There exist the **pattern** in this problem|O(n) and O(n)|Medium|0.5h|20.56%;100.00%|
 |[0007](https://leetcode.com/problems/reverse-integer/submissions/)|[reverse integer](./py/P0007.py)||O(1)|Easy|20m|51.04%;100.00%|
-|[0133](./py/P0133.py)|[Clone graph](https://leetcode.com/problems/clone-graph/)| **Graph** | O(n), O(n)| Medium|40m|72.21%;100.00%|
-|[0099](./py/P0099.py)|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|**BST**, **Stack**, **In Order Traversing** Firstly all the invalid nodes are collectd, whose relationship is inconsistent with the rule in BST (such the value of current node is smaller than the one of left child or the one of its predecessor). Secondly, all the invalid nodes are re-sequenced by in-order traversing. Thirdly, the first and last nodes from the sequences are the target nodes.|O(nlogn), O(n)| Hard | 3h |5.18%;100.00%|
-|[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
+|[0010](./py/P0010.py)| [regular expression matching](https://leetcode.com/problems/regular-expression-matching/) | This is one of classic ***Dynamic Programming*** problems. The formula of is: $d[i][j]=argmax(cal(i-1,j),cal(i,j-1), cal(i-1,j-1))$. Here the *argmax* is not to optimization, if there exist one solution or path, the path will be added to d[i][j]. | O(n\*n), O(n\*n) | Hard | 3+h |30.40%;100.00%|
 |[0021](./py/P0021.py)|[Merge two sorted lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(logn), O(1)| Easy | 10m |96.01%;100.00%|
 |[0023](./py/P0021.py)|[Merge k Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|Sort, list| O(nlogn), O(1)|Easy | 10m| 36.57%;100.00%|
-|[0010](./py/P0010.py)| [regular expression matching](https://leetcode.com/problems/regular-expression-matching/) | This is one of classic ***Dynamic Programming*** problems. The formula of is: $d[i][j]=argmax(cal(i-1,j),cal(i,j-1), cal(i-1,j-1))$. Here the *argmax* is not to optimization, if there exist one solution or path, the path will be added to d[i][j]. | O(n\*n), O(n\*n) | Hard | 3+h |30.40%;100.00%|
 |[0025](./py/P0025.py)|[Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)|List|O(n\*n), O(1)| Hard| 3+h | 5.03%;100.00%|
-||
+|[0099](./py/P0099.py)|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|**BST**, **Stack**, **In Order Traversing** Firstly all the invalid nodes are collectd, whose relationship is inconsistent with the rule in BST (such the value of current node is smaller than the one of left child or the one of its predecessor). Secondly, all the invalid nodes are re-sequenced by in-order traversing. Thirdly, the first and last nodes from the sequences are the target nodes.|O(nlogn), O(n)| Hard | 3h |5.18%;100.00%|
+|[0133](./py/P0133.py)|[Clone graph](https://leetcode.com/problems/clone-graph/)| **Graph** | O(n), O(n)| Medium|40m|72.21%;100.00%|
+|[0460](./py/P0460.py)|[LFU Cache](https://leetcode.com/problems/lfu-cache/)| Least Frequently Used cache | O(1), O(n)| Hard | 2h |80.66%;100.00%|
+|[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
+
