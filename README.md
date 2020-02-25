@@ -3,7 +3,8 @@
 - [Binary Search Tree](./py/BST/note.md)
 
 [0099](https://leetcode.com/problems/recover-binary-search-tree/), [0493](https://leetcode.com/problems/reverse-pairs/),
-[0998](https://leetcode.com/problems/maximum-binary-tree/)
+[0654](https://leetcode.com/problems/maximum-binary-tree/),
+[0998](https://leetcode.com/problems/maximum-binary-tree-ii/)
 
 - [Heap](./py/Heap/note.md)
 
@@ -46,6 +47,7 @@
 |[0133](./py/P0133.py)|[Clone graph](https://leetcode.com/problems/clone-graph/)| **Graph** | O(n), O(n)| Medium|40m|72.21%;100.00%|
 |[0460](./py/P0460.py)|[LFU Cache](https://leetcode.com/problems/lfu-cache/)| Least Frequently Used cache | O(1), O(n)| Hard | 2h |80.66%;100.00%|
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
+|[0654](./py/P0654.py)| [Maximum Binary Tree](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 83.06%%;100.00%|
 |[0998](./py/P0998.py)| [Maximum Binary Tree II](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 21.36%;100.00%|
 |[1001](./py/P1001.py)| [Grid Illumination](https://leetcode.com/problems/grid-illumination/) | dictionary | O(m,n) | Hard | 1h | 59.52%;25.00%|
 ||
