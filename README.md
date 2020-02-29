@@ -19,9 +19,10 @@
 [0021](https://leetcode.com/problems/merge-two-sorted-lists/)
 [0023](https://leetcode.com/problems/merge-k-sorted-lists/)
 
-- DP - 2d
+- [DP - 2d](./py/DP/node.md)
 
 [0010](https://leetcode.com/problems/regular-expression-matching/)
+[1000](https://leetcode.com/problems/minimum-cost-to-merge-stones/)
 
 
 - [Ordered Dict](./py/Others/OrderedDict.md)
@@ -49,5 +50,6 @@
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
 |[0654](./py/P0654.py)| [Maximum Binary Tree](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 83.06%%;100.00%|
 |[0998](./py/P0998.py)| [Maximum Binary Tree II](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 21.36%;100.00%|
+|[1000](./py/P1000.py)|[Minimum Cost to Merge Stones](https://leetcode.com/problems/minimum-cost-to-merge-stones/)|Dynamic Programming. [See detail]()|O(n^3)| Hard | 3h+|15.54%;100.00%|
 |[1001](./py/P1001.py)| [Grid Illumination](https://leetcode.com/problems/grid-illumination/) | dictionary | O(m,n) | Hard | 1h | 59.52%;25.00%|
 ||
