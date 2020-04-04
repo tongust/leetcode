@@ -39,7 +39,7 @@
 
 - Classical problems
 
-[0281](py\Others\SkylineProblems.md)
+[0281](./py/Others/SkylineProblems.md)
 
 
 
@@ -59,7 +59,7 @@
 |[0025](./py/P0025.py)|[Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)|List|O(n\*n), O(1)| Hard| 3+h | 5.03%;100.00%|
 |[0099](./py/P0099.py)|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|**BST**, **Stack**, **In Order Traversing** Firstly all the invalid nodes are collectd, whose relationship is inconsistent with the rule in BST (such the value of current node is smaller than the one of left child or the one of its predecessor). Secondly, all the invalid nodes are re-sequenced by in-order traversing. Thirdly, the first and last nodes from the sequences are the target nodes.|O(nlogn), O(n)| Hard | 3h |5.18%;100.00%|
 |[0133](./py/P0133.py)|[Clone graph](https://leetcode.com/problems/clone-graph/)| **Graph** | O(n), O(n)| Medium|40m|72.21%;100.00%|
-|[0218]((./py/P0218.py))|[The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)| Strategy. Binary search. [0281](py\Others\SkylineProblems.md)| O(n) | Hard | 3d+ |93.40%;10.00%|
+|[0218]((./py/P0218.py))|[The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)| Strategy. Binary search. [0281](./py/Others/SkylineProblems.md)| O(n) | Hard | 3d+ |93.40%;10.00%|
 |[0460](./py/P0460.py)|[LFU Cache](https://leetcode.com/problems/lfu-cache/)| Least Frequently Used cache | O(1), O(n)| Hard | 2h |80.66%;100.00%|
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
 |[0654](./py/P0654.py)| [Maximum Binary Tree](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 83.06%%;100.00%|
