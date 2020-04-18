@@ -22,6 +22,10 @@
 [0021](https://leetcode.com/problems/merge-two-sorted-lists/)
 [0023](https://leetcode.com/problems/merge-k-sorted-lists/)
 
+- [DP - 1d]
+
+[0975](https://leetcode.com/problems/odd-even-jump/submissions/)
+
 - [DP - 2d](./py/DP/node.md)
 
 [0010](https://leetcode.com/problems/regular-expression-matching/)
@@ -64,6 +68,7 @@
 |[0493](./py/P0099.py)|[Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)| Binary Tree, Sort | O(nlogn), O(n) | Medium | 30m |17.22%;33.33%|
 |[0654](./py/P0654.py)| [Maximum Binary Tree](https://leetcode.com/problems/maximum-binary-tree-ii/) | Binary Search Tree, Non-recursively: in-order traversing | O(n),O(n) | Median | 24m | 83.06%%;100.00%|
 |[0863](./py/P0863.py)|[All Nodes Distance K in Binary Tree](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/)| Binary Tree. Tree walk| O(ln(n)*ln(n))| Median | 30m |26.87%;100.00%|
+|[0975](./py/P0975.py)| [Odd Even Jump](https://leetcode.com/problems/odd-even-jump/submissions/) | dp and bisect | O(nlogn) | Hard | 2h47m |11.09%;14.29%|
 |[0980](./py/P0980.py)| [Unique Paths III](https://leetcode.com/problems/unique-paths-iii/) | Deep first search | O(n*n?) | Hard | 1h |96.85%;7.69%|
 |[0994](./py/P0994.py)|[Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)||O(n^2)|Median|1h|11.05%;16.67%|
 |[0995](./py/P0995.py)| [Minimum Number of K Consecutive Bit Flips](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/)|Binary Search| O(nlogk) | hard |3h+|5.88%;50.00%|
